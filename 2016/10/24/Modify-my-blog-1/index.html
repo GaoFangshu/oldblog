@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Modify my blog (1) | Gao Fangshu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Can’t stand the ugly color of code block, then I begin to customize my Hexo theme. Thanks to the guide, now let’s begin:
+
+According to a highlight theme, change the highlight color (in ...\source\css\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Modify my blog (1)">
+<meta property="og:url" content="http://gaofanshu.com/2016/10/24/Modify-my-blog-1/index.html">
+<meta property="og:site_name" content="Gao Fangshu">
+<meta property="og:description" content="Can’t stand the ugly color of code block, then I begin to customize my Hexo theme. Thanks to the guide, now let’s begin:
+
+According to a highlight theme, change the highlight color (in ...\source\css\">
+<meta property="og:updated_time" content="2016-10-24T23:02:51.539Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Modify my blog (1)">
+<meta name="twitter:description" content="Can’t stand the ugly color of code block, then I begin to customize my Hexo theme. Thanks to the guide, now let’s begin:
+
+According to a highlight theme, change the highlight color (in ...\source\css\">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Gao Fangshu</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">It is our choices that show what we truly are.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-home-icon" class="nav-icon" href="/"></a>
+        
+          <a id="nav-archives-icon" class="nav-icon" href="/archives"></a>
+        
+          <a id="nav-about-icon" class="nav-icon" href="/about"></a>
+        
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Modify-my-blog-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Modify my blog (1)
+    </h1>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2016-10-24T21:59:43.000Z" itemprop="datePublished">10-24-2016</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Can’t stand the ugly color of code block, then I begin to customize my Hexo theme. Thanks to the <a href="http://blog.sunnyxx.com/2014/03/07/hexo_customize/" target="_blank" rel="external">guide</a>, now let’s begin:</p>
+<ul>
+<li>According to a <a href="https://github.com/chriskempson/tomorrow-theme" target="_blank" rel="external">highlight theme</a>, change the highlight color (in <code>...\source\css\_partial\highlight.styl</code>), and set the background color as <code>#e5e5e5</code>.</li>
+<li><p>Change the inline code style (in the same file as above):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.article-entry</div><div class="line">    pre, code</div><div class="line">      font-family: font-mono</div><div class="line">    code</div><div class="line">      background: #e5e5e5</div><div class="line">      text-shadow: none</div><div class="line">      padding: 0 0.3em</div><div class="line">      border-radius: 3px</div><div class="line">      border-width 1px</div><div class="line">      border-color: color-border</div></pre></td></tr></table></figure>
+</li>
+<li><p>Change article base style in <code>...\source\css\_extend.styl</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$block</div><div class="line">    backgroun: color-background</div><div class="line">    box-shadow: 1px 2px 3px #ddd</div><div class="line">    border: 1px solid color-border</div><div class="line">    border-radius: 10px</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Other items still need to be modified, such as header, archives and logos. However, “Rome wasn’t built in a day”, leave it for next time.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://gaofanshu.com/2016/10/24/Modify-my-blog-1/" data-id="ciuoo5tfm0005nwsxnh0oqyg1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/23/Installing-Scrapy-On-Windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Installing Scrapy On Windows</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Gao Fangshu<br>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
