@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Installing Scrapy On Windows | Gao Fangshu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Installing Python packages takes me some time for getting used to. Fortunately, a step-by-step Tutorial on YouTube helps a lot.
+Check Python version and environment variablesOpen command prompt and ty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Installing Scrapy On Windows">
+<meta property="og:url" content="http://gaofanshu.com/2016/10/23/Installing-Scrapy-On-Windows/index.html">
+<meta property="og:site_name" content="Gao Fangshu">
+<meta property="og:description" content="Installing Python packages takes me some time for getting used to. Fortunately, a step-by-step Tutorial on YouTube helps a lot.
+Check Python version and environment variablesOpen command prompt and ty">
+<meta property="og:updated_time" content="2016-10-24T20:15:59.314Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Installing Scrapy On Windows">
+<meta name="twitter:description" content="Installing Python packages takes me some time for getting used to. Fortunately, a step-by-step Tutorial on YouTube helps a lot.
+Check Python version and environment variablesOpen command prompt and ty">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Gao Fangshu</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">It is our choices that show what we truly are.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-home-icon" class="nav-icon" href="/"></a>
+        
+          <a id="nav-archives-icon" class="nav-icon" href="/archives"></a>
+        
+          <a id="nav-about-icon" class="nav-icon" href="/about"></a>
+        
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Installing-Scrapy-On-Windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Installing Scrapy On Windows
+    </h1>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2016-10-23T09:00:52.000Z" itemprop="datePublished">10-23-2016</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Installing Python packages takes me some time for getting used to. Fortunately, a step-by-step <a href="https://www.youtube.com/watch?v=eEK2kmmvIdw" target="_blank" rel="external">Tutorial</a> on YouTube helps a lot.</p>
+<h6 id="Check-Python-version-and-environment-variables"><a href="#Check-Python-version-and-environment-variables" class="headerlink" title="Check Python version and environment variables"></a>Check Python version and environment variables</h6><p>Open command prompt and type in <code>pyhton</code>, check the edition (Python 2.7 and 32-bit) of Python. Additionally, be sure that environment variable <code>PATH</code> already contain <code>C:\Python27;C:\python\Scripts</code>.</p>
+<h6 id="Download-and-install-dependencies"><a href="#Download-and-install-dependencies" class="headerlink" title="Download and install dependencies"></a>Download and install dependencies</h6><ul>
+<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=29" target="_blank" rel="external">Visual C++</a>.</li>
+<li><a href="http://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="external">Win32 OpenSSL</a>, full version, not light version. Then, add <code>C:\OpenSSL-Win32\bin</code> to environment variable <code>PATH</code>.</li>
+<li><a href="https://pypi.python.org/pypi/setuptools" target="_blank" rel="external">Python setuptools</a></li>
+<li><a href="https://sourceforge.net/projects/pywin32/files/" target="_blank" rel="external">pywin32</a></li>
+<li><a href="http://twistedmatrix.com/trac/wiki/Downloads" target="_blank" rel="external">Twisted</a></li>
+<li><a href="https://pypi.python.org/pypi/zope.interface/4.3.2" target="_blank" rel="external">zope.interface</a>, download egg for win32. Then, type <code>cd Your:\directory\of\egg</code> and <code>easy_install zope.interface-4.3.2-py2.7-win32.egg</code> (or other similar egg file).</li>
+<li><a href="https://pypi.python.org/pypi/lxml/3.6.0" target="_blank" rel="external">lxml</a></li>
+<li><a href="https://pypi.python.org/pypi/pyOpenSSL/0.13" target="_blank" rel="external">pyOpenSSL</a>, easy_install the egg file.</li>
+</ul>
+<h6 id="Installing-Scrapy"><a href="#Installing-Scrapy" class="headerlink" title="Installing Scrapy"></a>Installing Scrapy</h6><p>Type <code>easy_install Scrapy</code>, then check the installation by typing <code>Scrapy version</code>.</p>
+<h6 id="PS"><a href="#PS" class="headerlink" title="PS:"></a>PS:</h6><p>Version conflict may happen during the installation. In most cases, trying a newer version can solve this problem.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://gaofanshu.com/2016/10/23/Installing-Scrapy-On-Windows/" data-id="ciuoi88vf0000yosxo0epnq6n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/02/Formula-Test/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Formula Test</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Gao Fangshu<br>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
