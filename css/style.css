@@ -961,7 +961,7 @@ a.article-title:hover {
 }
 .article-entry pre,
 .article-entry .highlight {
-  background: #2d2d2d;
+  background: #fff;
   margin: 0 -10px;
   padding: 15px 10px;
   border-style: solid;
@@ -1035,7 +1035,7 @@ a.article-title:hover {
   border-style: solid;
   border-color: #ddd;
   border-width: 1px 0;
-  background: #2d2d2d;
+  background: #fff;
   padding: 15px 10px 15px 0;
 }
 .article-entry .gist .gist-file {
@@ -1061,7 +1061,7 @@ a.article-title:hover {
   border: none;
 }
 .article-entry .gist .gist-file .gist-meta {
-  background: #2d2d2d;
+  background: #fff;
   color: #999;
   font: 0.85em "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
   text-shadow: 0 0;
