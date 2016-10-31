@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Modify my blog(2) Add a tag page | Gao Fangshu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="If you want to modify source code corresponding to your Hexo blog, searching it in Github repository can be pretty efficient.
+For example, when I plan to add a tag page to my blog, searching nav-home-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Modify my blog(2) Add a tag page">
+<meta property="og:url" content="http://gaofanshu.com/2016/10/31/Modify-my-blog-2-Add-a-tag-page/index.html">
+<meta property="og:site_name" content="Gao Fangshu">
+<meta property="og:description" content="If you want to modify source code corresponding to your Hexo blog, searching it in Github repository can be pretty efficient.
+For example, when I plan to add a tag page to my blog, searching nav-home-">
+<meta property="og:updated_time" content="2016-10-31T23:16:24.765Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Modify my blog(2) Add a tag page">
+<meta name="twitter:description" content="If you want to modify source code corresponding to your Hexo blog, searching it in Github repository can be pretty efficient.
+For example, when I plan to add a tag page to my blog, searching nav-home-">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Gao Fangshu</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">It is our choices that show what we truly are.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-home-icon" class="nav-icon" href="/"></a>
+        
+          <a id="nav-tags-icon" class="nav-icon" href="/tags"></a>
+        
+          <a id="nav-archives-icon" class="nav-icon" href="/archives"></a>
+        
+          <a id="nav-about-icon" class="nav-icon" href="/about"></a>
+        
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Modify-my-blog-2-Add-a-tag-page" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Modify my blog(2) Add a tag page
+    </h1>
+  
+
+      </header>
+    
+    <time class="article-date" datetime="2016-10-31T22:03:25.000Z" itemprop="datePublished">10-31-2016</time>
+    
+  </div>
+  <div class="article-inner">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>If you want to modify source code corresponding to your Hexo blog, searching it in Github repository can be pretty efficient.</p>
+<p>For example, when I plan to add a tag page to my blog, searching <code>nav-home-icon</code> in <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank" rel="external">theme “athena” repository</a>. It shows relative code in <code>hexo-theme-athena/_config.yml</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># Header</div><div class="line">menu:</div><div class="line">  Home: /</div><div class="line">  Archives: /archives</div><div class="line">  About: /about</div><div class="line"># Header Icon</div><div class="line">menu_icon:</div><div class="line">  Home: nav-home-icon</div><div class="line">  Archives: nav-archives-icon</div><div class="line">  About: nav-about-icon</div></pre></td></tr></table></figure></p>
+<p>To add a tag page, create a new page in hexo, by <code>$ hexo new page tags</code>. Add a line <code>type: &quot;tags&quot;</code> in this new page and modify the <code>hexo-theme-athena/_config.yml</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># Header</div><div class="line">menu:</div><div class="line">  Home: /</div><div class="line">  tags: /tags</div><div class="line">  Archives: /archives</div><div class="line">  About: /about</div><div class="line"># Header Icon</div><div class="line">menu_icon:</div><div class="line">  Home: nav-home-icon</div><div class="line">  tags: nav-tags-icon</div><div class="line">  Archives: nav-archives-icon</div><div class="line">  About: nav-about-icon</div></pre></td></tr></table></figure></p>
+<p>Now, we already have a tag page, but its tag icon still doesn’t exist. Therefore, search <code>nav-home-icon</code> again, and we can find following code in <code>hexo-theme-athena/source/css/_partial/header.styl</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#nav-rss-link</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f09e&quot;</div><div class="line"></div><div class="line">#nav-home-icon</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f015&quot;</div><div class="line"></div><div class="line">#nav-archives-icon</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f03a&quot;</div><div class="line"></div><div class="line">#nav-about-icon</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f007&quot;</div></pre></td></tr></table></figure></p>
+<p>That’s interesting, icons are not in common image format like <code>.jpg</code> or <code>.png</code>, but UTF-8 icons. Then, we can add a new tag icon easily:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#nav-tags-icon</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f02c&quot;</div></pre></td></tr></table></figure></p>
+<p>Unfortunately, I still don’t know how to sort and count my tags automatically and at present have to write tags manually in markdown.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://gaofanshu.com/2016/10/31/Modify-my-blog-2-Add-a-tag-page/" data-id="ciuyoq9zi0007zcsx156byop6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/24/Modify-my-blog-1-Code-block-style/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Modify my blog (1): Code block style</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Powered by <a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a> & Design based on theme <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank" title="athena">athena</a><br>
+      &copy; 2016 Gao Fangshu
+      <br>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+}); 
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
