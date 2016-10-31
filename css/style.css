@@ -389,6 +389,9 @@ body {
 #nav-about-icon:before {
   content: "\f007";
 }
+#nav-tags-icon:before {
+  content: "\f02c";
+}
 .article {
   margin: 60px 0 20px 0;
 }
