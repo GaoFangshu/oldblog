@@ -3,14 +3,18 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Gao Fangshu</title>
+  <title>Learning SAS by examples | Gao Fangshu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Gao Fangshu">
-<meta property="og:url" content="http://gaofanshu.com/index.html">
+  <meta name="description" content="When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s wort">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning SAS by examples">
+<meta property="og:url" content="http://gaofanshu.com/2016/12/18/Learning-SAS-by-examples/index.html">
 <meta property="og:site_name" content="Gao Fangshu">
+<meta property="og:description" content="When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s wort">
+<meta property="og:updated_time" content="2016-12-19T09:44:40.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gao Fangshu">
+<meta name="twitter:title" content="Learning SAS by examples">
+<meta name="twitter:description" content="When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s wort">
   
   
     <link rel="icon" href="favicon.ico">
@@ -51,15 +55,15 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Learning-SAS-by-examples" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Learning-SAS-by-examples" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     
       <header class="article-header">
         
   
-    <a class="article-title" href="/2016/12/18/Learning-SAS-by-examples/">Learning SAS by examples</a>
+    <h1 class="article-title" itemprop="name">
+      Learning SAS by examples
+    </h1>
   
 
       </header>
@@ -334,259 +338,20 @@
     </footer>
   </div>
   
-</article>
-
-
-  
-    <article id="post-Modify-my-blog-2-Add-a-tag-page" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
     
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <a class="article-title" href="/2016/10/31/Modify-my-blog-2-Add-a-tag-page/">Modify my blog (2): Add a tag page</a>
   
+    <a href="/2016/10/31/Modify-my-blog-2-Add-a-tag-page/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Modify my blog (2): Add a tag page</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <time class="article-date" datetime="2016-10-31T22:03:25.000Z" itemprop="datePublished">10-31-2016</time>
-    
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>If you want to modify source code corresponding to your Hexo blog, searching it in Github repository can be pretty efficient.</p>
-<p>For example, when I plan to add a tag page to my blog, searching <code>nav-home-icon</code> in <a href="https://github.com/steven5538/hexo-theme-athena" target="_blank" rel="external">theme “athena” repository</a>. It shows relative code in <code>hexo-theme-athena/_config.yml</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># Header</div><div class="line">menu:</div><div class="line">  Home: /</div><div class="line">  Archives: /archives</div><div class="line">  About: /about</div><div class="line"># Header Icon</div><div class="line">menu_icon:</div><div class="line">  Home: nav-home-icon</div><div class="line">  Archives: nav-archives-icon</div><div class="line">  About: nav-about-icon</div></pre></td></tr></table></figure></p>
-<p>To add a tag page, create a new page in hexo, by <code>$ hexo new page tags</code>. Add a line <code>type: &quot;tags&quot;</code> in this new page and modify the <code>hexo-theme-athena/_config.yml</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># Header</div><div class="line">menu:</div><div class="line">  Home: /</div><div class="line">  tags: /tags</div><div class="line">  Archives: /archives</div><div class="line">  About: /about</div><div class="line"># Header Icon</div><div class="line">menu_icon:</div><div class="line">  Home: nav-home-icon</div><div class="line">  tags: nav-tags-icon</div><div class="line">  Archives: nav-archives-icon</div><div class="line">  About: nav-about-icon</div></pre></td></tr></table></figure></p>
-<p>Now, we already have a tag page, but its tag icon still doesn’t exist. Therefore, search <code>nav-home-icon</code> again, and we can find following code in <code>hexo-theme-athena/source/css/_partial/header.styl</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#nav-rss-link</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f09e&quot;</div><div class="line"></div><div class="line">#nav-home-icon</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f015&quot;</div><div class="line"></div><div class="line">#nav-archives-icon</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f03a&quot;</div><div class="line"></div><div class="line">#nav-about-icon</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f007&quot;</div></pre></td></tr></table></figure></p>
-<p>That’s interesting, icons are not in common image format like <code>.jpg</code> or <code>.png</code>, but UTF-8 icons. Then, we can add a new tag icon easily:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#nav-tags-icon</div><div class="line">  &amp;:before</div><div class="line">    content: &quot;\f02c&quot;</div></pre></td></tr></table></figure></p>
-<p>Unfortunately, I still don’t know how to sort and count my tags automatically and at present have to write tags manually in markdown.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/31/Modify-my-blog-2-Add-a-tag-page/" data-id="ciwvwcjmv0005mkvgz2726s4h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-Modify-my-blog-1-Code-block-style" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-      <header class="article-header">
-        
-  
-    <a class="article-title" href="/2016/10/24/Modify-my-blog-1-Code-block-style/">Modify my blog (1): Code block style</a>
-  
-
-      </header>
-    
-    <time class="article-date" datetime="2016-10-24T21:59:43.000Z" itemprop="datePublished">10-24-2016</time>
-    
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Can’t stand the ugly color of code block, then I begin to customize my Hexo theme. Thanks to the <a href="http://blog.sunnyxx.com/2014/03/07/hexo_customize/" target="_blank" rel="external">guide</a>, now let’s begin:</p>
-<ul>
-<li>According to a <a href="https://github.com/chriskempson/tomorrow-theme" target="_blank" rel="external">highlight theme</a>, change the highlight color (in <code>...\source\css\_partial\highlight.styl</code>), and set the background color as <code>#e5e5e5</code>.</li>
-<li><p>Change the inline code style (in the same file as above):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.article-entry</div><div class="line">    pre, code</div><div class="line">      font-family: font-mono</div><div class="line">    code</div><div class="line">      background: #e5e5e5</div><div class="line">      text-shadow: none</div><div class="line">      padding: 0 0.3em</div><div class="line">      border-radius: 3px</div><div class="line">      border-width 1px</div><div class="line">      border-color: color-border</div></pre></td></tr></table></figure>
-</li>
-<li><p>Change article base style in <code>...\source\css\_extend.styl</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$block</div><div class="line">    backgroun: color-background</div><div class="line">    box-shadow: 1px 2px 3px #ddd</div><div class="line">    border: 1px solid color-border</div><div class="line">    border-radius: 10px</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>Other items still need to be modified, such as header, archives and logos. However, “Rome wasn’t built in a day”, leave it for next time.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/24/Modify-my-blog-1-Code-block-style/" data-id="ciwvwcjn9000emkvgyz4zqc0i" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Installing-Scrapy-On-Windows" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-      <header class="article-header">
-        
-  
-    <a class="article-title" href="/2016/10/23/Installing-Scrapy-On-Windows/">Installing Scrapy On Windows</a>
-  
-
-      </header>
-    
-    <time class="article-date" datetime="2016-10-23T09:00:52.000Z" itemprop="datePublished">10-23-2016</time>
-    
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Installing Python packages takes me some time for getting used to. Fortunately, a step-by-step <a href="https://www.youtube.com/watch?v=eEK2kmmvIdw" target="_blank" rel="external">Tutorial</a> on YouTube helps a lot.</p>
-<h3 id="Check-Python-version-and-environment-variables"><a href="#Check-Python-version-and-environment-variables" class="headerlink" title="Check Python version and environment variables"></a>Check Python version and environment variables</h3><p>Open command prompt and type in <code>pyhton</code>, check the edition (Python 2.7 and 32-bit) of Python. Additionally, be sure that environment variable <code>PATH</code> already contain <code>C:\Python27;C:\python\Scripts</code>.</p>
-<h3 id="Download-and-install-dependencies"><a href="#Download-and-install-dependencies" class="headerlink" title="Download and install dependencies"></a>Download and install dependencies</h3><ul>
-<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=29" target="_blank" rel="external">Visual C++</a>.</li>
-<li><a href="http://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="external">Win32 OpenSSL</a>, full version, not light version. Then, add <code>C:\OpenSSL-Win32\bin</code> to environment variable <code>PATH</code>.</li>
-<li><a href="https://pypi.python.org/pypi/setuptools" target="_blank" rel="external">Python setuptools</a></li>
-<li><a href="https://sourceforge.net/projects/pywin32/files/" target="_blank" rel="external">pywin32</a></li>
-<li><a href="http://twistedmatrix.com/trac/wiki/Downloads" target="_blank" rel="external">Twisted</a></li>
-<li><a href="https://pypi.python.org/pypi/zope.interface/4.3.2" target="_blank" rel="external">zope.interface</a>, download egg for win32. Then, type <code>cd Your:\directory\of\egg</code> and <code>easy_install zope.interface-4.3.2-py2.7-win32.egg</code> (or other similar egg file).</li>
-<li><a href="https://pypi.python.org/pypi/lxml/3.6.0" target="_blank" rel="external">lxml</a></li>
-<li><a href="https://pypi.python.org/pypi/pyOpenSSL/0.13" target="_blank" rel="external">pyOpenSSL</a>, easy_install the egg file.</li>
-</ul>
-<h3 id="Install-Scrapy"><a href="#Install-Scrapy" class="headerlink" title="Install Scrapy"></a>Install Scrapy</h3><p>Type <code>easy_install Scrapy</code>, then check the installation by typing <code>Scrapy version</code>.</p>
-<p><strong>PS:</strong> Version conflict may happen during the installation. In most cases, trying a newer version can solve this problem.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/23/Installing-Scrapy-On-Windows/" data-id="ciwvwcjmq0003mkvg7nycrnwe" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Formula-Test" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-      <header class="article-header">
-        
-  
-    <a class="article-title" href="/2016/10/02/Formula-Test/">Formula Test</a>
-  
-
-      </header>
-    
-    <time class="article-date" datetime="2016-10-02T09:22:03.000Z" itemprop="datePublished">10-02-2016</time>
-    
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Thanks to two helpful guides <a href="http://wuchong.me/blog/2014/03/14/use-latex-in-blog/" target="_blank" rel="external">在博客上写LaTex数学公式</a> and <a href="http://blog.iamxcc.com/2016/07/31/hexo%E4%B8%BB%E9%A2%98%E4%B8%AD%E4%BD%BF%E7%94%A8mathjax%E6%9D%A5%E6%94%AF%E6%8C%81latex%E5%85%AC%E5%BC%8F/" target="_blank" rel="external">hexo主题中使用mathjax来支持LaTex公式</a>, formula can be displayed on my blog.</p>
-<p>There still exist some bugs when using “{“ and “/“ in Mathjax &amp; Hexo.</p>
-<p>However, we can enjoy the beauty of <a href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank" rel="external">normal distribution</a> now:</p>
-<p>$$f(x) = \dfrac{1}{\sigma \sqrt{2\pi}} e^{-\dfrac{(x-\mu)^2}{2 \sigma^2}}$$</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/02/Formula-Test/" data-id="ciwvwcjmh0000mkvg4rbnfolg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-填平数学公式前的坑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-      <header class="article-header">
-        
-  
-    <a class="article-title" href="/2016/10/01/填平数学公式前的坑/">填平数学公式前的坑</a>
-  
-
-      </header>
-    
-    <time class="article-date" datetime="2016-10-01T21:23:04.000Z" itemprop="datePublished">10-01-2016</time>
-    
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天计划学会在 Hexo + Markdown 里添加数学公式。本以为用用 MathJax 就好，但实践中发现这里面有很多坑：</p>
-<ol>
-<li><p>由于防火墙的问题，用 <code>ssh -T git@github.com</code> 连接 GitHub 会出现 <code>ssh: connect to host github.com port 22: Bad file number</code> 的报错。</p>
-<p>根据 GitHub 官方文档 <a href="https://help.github.com/articles/error-bad-file-number/" target="_blank" rel="external">Error: Bad file number</a> 和 <a href="https://help.github.com/articles/using-ssh-over-the-https-port/" target="_blank" rel="external">Using SSH over the HTTPS port</a> ，用 <code>ssh -T -p 443 git@ssh.github.com</code> 代替即可。</p>
-</li>
-<li><p>本来想按照 <a href="http://catx.me/2014/03/09/hexo-mathjax-plugin/" target="_blank" rel="external">Hexo MathJax插件教程</a> 里安装 hexo-math 直接搞定数学公式输入问题，但有一个 bug 出现了。只要在 <code>_config.yml</code> 中添加 <code>plugins:</code> 项，就无法成功执行 <code>hexo deploy</code> （此问题已有人提交了 <a href="https://github.com/hexojs/hexo/issues/1848" target="_blank" rel="external">issues</a> ）。</p>
-<p>   突然发现这个问题可能是因为小小的“-”符号，网上的教程都说需要添加</p>
-<pre><code>plugins:
-  - hexo-math
-</code></pre><p>   但其实第一个“-”不是手动打上去的，至少在 Sublime 里只要回车换行就行了。不过具体的还有待明天验证。</p>
-</li>
-</ol>
-<hr>
-<p>所以今天没有搞定数学公式，只是填了点之前的坑……而且上传了一次才发现这个页面主题的代码区段不够美观，代码区块更是丑！(╯‵□′)╯︵┻━┻<br>看来迟早要成为 Hexo 高级玩家哈哈~</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/01/填平数学公式前的坑/" data-id="ciwvwcjne000gmkvga0p3gksp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Hello-World-0" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-      <header class="article-header">
-        
-  
-    <a class="article-title" href="/2016/09/30/Hello-World-0/">Hello World</a>
-  
-
-      </header>
-    
-    <time class="article-date" datetime="2016-09-30T01:57:11.000Z" itemprop="datePublished">09-30-2016</time>
-    
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>距离成功创建Bolg又前进了1%哈哈</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/09/30/Hello-World-0/" data-id="ciwvwcjml0001mkvgikd539i0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
 </section>
         
       </div>
