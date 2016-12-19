@@ -73,260 +73,15 @@
         <p>When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s worth it!</p>
 <hr>
 <p><em>Every question begins with the sentence:<br>Using table SASHELP.CLASS write a code that …</em></p>
-<p><strong>Data processing in SAS:</strong></p>
-<ol>
-<li><p>creates a library engine v9 pointing to directory c:\ sas \</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a library engine v8 pointing to directory c:\ sas \</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">libname v8 &apos;c:\sas\&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a library engine odbc indicating the ODBC driver called CRM</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">libname odbc odbc datasrc=&apos;CRM&apos;;</div><div class="line">libname odbc odbc dsn=&apos;CRM&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>reads it using a SET instruction in a single datastep pass</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">data test;</div><div class="line">    set sashelp.class;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>reads it and creates table RESULT with a new variable called TWO, which contains the first two letters of the name</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    TWO=substr(name,1,2);</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>selects the rows with age greater than 12 years</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    if (age&gt;12) then output;</div><div class="line">proc print;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>selects the rows with names starting with the letter A</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    if (substr(name,1,1)=&apos;A&apos;) then output;</div><div class="line">proc print;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a new column DATE_OF_BIRTH on the basis of age and today’s date in the system</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    today=date();</div><div class="line">    format today yymmdd10.;</div><div class="line">    DATE_OF_BIRTH = intnx(&apos;Year&apos;,today,-age,&apos;s&apos;);</div><div class="line">    format DATE_OF_BIRTH yymmdd10.;</div><div class="line">    drop today;</div><div class="line">proc print;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a new column and counts number of letters in the name</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    num_name = length(name);</div><div class="line">proc print;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a new column: binary flag with 1 when the name contains letter a</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    if (indexc(name,&apos;a&apos;,&apos;A&apos;)&gt;0) then name_flag = 1;</div><div class="line">        else name_flag = 0;</div><div class="line">proc print;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a new column concatenating: name, age and gender, for example. Alfred-14-M</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    n_a_g=catx(&quot;-&quot;,name,age,sex);</div><div class="line">proc print;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>randomly multiplies each observation from 1 to 10 times</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    do i=1 to int(ranuni(0)*10+1);</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">proc print;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a RESULT table containing every second observation</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    if mod(_n_,2)=0 then output;</div><div class="line">proc print;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>sorts it by sex increasingly and age decreasingly</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">proc sort;</div><div class="line">    by sex descending age;</div><div class="line">run;</div><div class="line">proc print;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>based on the processing in groups mechanism calculates the number of women and men</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/*Solution 1*/</div><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data a;</div><div class="line">    set sashelp.class;</div><div class="line">proc sort data=a out=b;</div><div class="line">    by sex;</div><div class="line">data v9.RESULT(keep = sex count);</div><div class="line">    set b;</div><div class="line">    by sex;</div><div class="line">    if first.sex then count=0;</div><div class="line">    count+1;</div><div class="line">    if last.sex then output;</div><div class="line">proc print data=v9.RESULT;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/*Solution 2*/</div><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">proc freq;</div><div class="line">    tables sex;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>based on the processing in groups mechanism calculates minimum and maximum age for each gender</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data a;</div><div class="line">    set sashelp.class;</div><div class="line">run;</div><div class="line">proc sort data=a out=b;</div><div class="line">    by sex descending age;</div><div class="line">run;</div><div class="line">data v9.RESULT (keep = sex age);</div><div class="line">    set b;</div><div class="line">    by sex;</div><div class="line">    if first.sex then output;</div><div class="line">    if last.sex then output;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>based on the processing in groups mechanism calculates average for each gender</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data a;</div><div class="line">    set sashelp.class;</div><div class="line">run;</div><div class="line">proc sort data=a out=b;</div><div class="line">    by sex;</div><div class="line">run;</div><div class="line">proc means data=b;</div><div class="line">    var age;</div><div class="line">    by sex;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>using table SASHELP.AIR calculates the cumulative number of thousands of passengers, date by date - ascending, based on column AIR</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.a;</div><div class="line">    set sashelp.air;</div><div class="line">run;</div><div class="line">proc sort;</div><div class="line">    by DATE;</div><div class="line">run;</div><div class="line">data v9.RESULT;</div><div class="line">    set v9.a;</div><div class="line">    if first.date then cum_air=0;</div><div class="line">    cum_air+AIR;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>using LAG function crates table RESULT containing only these rows for which the previous line was a woman</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    lag=lag1(sex);</div><div class="line">    if lag=&apos;F&apos; then output;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">    title &apos;RESULT&apos;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a new column as the sum of the ages of the previous two lines</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    lag_1=lag1(age);</div><div class="line">    lag_2=lag2(age);</div><div class="line">    pre_2_age=lag_1+lag_2; /*sum of the ages of the previous two lines*/</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates table RESULT containing only observations with numbers from 5 to 7</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class(firstobs=5 obs=7);</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">    title &apos;RESULT&apos;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates table RESULT containing only the first observation</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    if _N_=1 then output;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">    title &apos;RESULT&apos;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates table RESULT containing only the last observation</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/*Solution 1*/</div><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class end=end;</div><div class="line">    if end then output;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">    title &apos;RESULT&apos;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/*Solution 2*/</div><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class nobs=nobs;</div><div class="line">    if _N_=nobs then output;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">    title &apos;RESULT&apos;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates new variables age1 to age20 and fills them the following way: eg. for age equal to 10 column age10 has a value of 1 and the other ones have 0</p>
-<p><em>Refer to <a href="http://www.ats.ucla.edu/stat/sas/faq/dumvars.htm" target="_blank" rel="external">Is there a quick way to create dummy variables?</a></em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/*Solution 1*/</div><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    if age=1 then age1=1;</div><div class="line">    else age1=0;</div><div class="line">    /* . . . */</div><div class="line">    /*use lots of &apos;if then else&apos; statements*/</div><div class="line">    /* . . . */</div><div class="line">    if age=20 then age20=1;</div><div class="line">    else age20=0;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/*Solution 2*/</div><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT;</div><div class="line">    set sashelp.class;</div><div class="line">    array  dummy&#123;*&#125; 3. age1 - age20;</div><div class="line">    do i=1 to 20;</div><div class="line">        dummy&#123;i&#125;=0;</div><div class="line">    end;</div><div class="line">    dummy&#123;age&#125;=1;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>using SASHELP.ZHC select only those observations whose PCMS code is in table SASHELP.ZTC</p>
-<blockquote>
-<p>The data sets that are listed in the MERGE statement must be sorted in order of the values of the variables that are listed in the BY statement, or they must have an appropriate index.</p>
-</blockquote>
-<p><em><a href="http://www.ats.ucla.edu/stat/sas/modules/merge.htm" target="_blank" rel="external">Match merging data files in SAS</a></em></p>
-<blockquote>
-<p>When you merge files that have the same variable, SAS will use the values from the file that appears last on the merge statement.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">proc sort data=sashelp.zhc out=v9.zhc;</div><div class="line">    by pcms;</div><div class="line">run;</div><div class="line">proc sort data=sashelp.ztc out=v9.ztc;</div><div class="line">    by pcms;</div><div class="line">run;</div><div class="line">data v9.RESULT;</div><div class="line">    merge v9.ztc(in=a) v9.zhc(in=b);</div><div class="line">    by pcms;</div><div class="line">    if a&amp;b then</div><div class="line">    /*WARNING: Apparent symbolic reference B not resolved.*/</div><div class="line">        do;</div><div class="line">            keep unicode ibm pcms;</div><div class="line">            output v9.RESULT;</div><div class="line">        end;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>adds column EUC to table SASHELP.ZHC from table SASHELP.ZTC using PCMS as joining key</p>
-<p><em>SASHELP.ZHC merging SASHELP.ZTC is a many-to-many merge?!</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">proc sort data=sashelp.zhc out=v9.zhc;</div><div class="line">    by pcms;</div><div class="line">run;</div><div class="line">data v9.ztc0;</div><div class="line">    set sashelp.ztc;</div><div class="line">    keep pcms euc;</div><div class="line">run;</div><div class="line">proc sort data=v9.ztc0 nodup out=v9.ztc;</div><div class="line">    by pcms;</div><div class="line">run;</div><div class="line">data v9.RESULT;</div><div class="line">    merge v9.zhc(in=a) v9.ztc;</div><div class="line">    by pcms;</div><div class="line">    if a then output v9.RESULT;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>tests joining tables SASHELP.ZHC and SASHELP.ZTC by PCMS, how many observations joined, how many are not joined in first and second tables</p>
-<p><em><a href="http://www.lexjansen.com/nesug/nesug08/ff/ff03.pdf" target="_blank" rel="external">Using DATA Step MERGE and PROC SQL JOIN to Combine SAS Datasets</a></em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates table RESULT containing columns from age11 to age16 and name. For example, if a student is 11 years old the variable age11 contains the student’s gender and the remaining variables are empty</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">libname v9 &apos;c:\sas\&apos;;</div><div class="line">data v9.RESULT(keep=name age11-age16);</div><div class="line">    set sashelp.class;</div><div class="line">    array dummy&#123;*&#125; $ age11 - age16;</div><div class="line">    do i=1 to 6;</div><div class="line">        dummy&#123;i&#125;=&apos; &apos;;</div><div class="line">    end;</div><div class="line">    dummy&#123;age-10&#125;=sex;</div><div class="line">run;</div><div class="line">proc print data=v9.RESULT;</div><div class="line">    title &apos;RESULT&apos;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-<li><p>using table SASHELP.CARS creates table RESULT containing information about car models in multiple lines. For a given model, in rows, there are two additional columns named PROPERTY and VALUE. In the first column there is the name of the column from original table and its value in the second one.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>counts the Levenstein distance between the name and the word Alfred</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates 19 tables from name1 to name19, each with one observation, the first with the first observation of the input table, and the last with the last</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates table RESULT containing observations repeated as many times as is the value of the variable age</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a two-dimensional array in the IML taking the first two observations and columns age and weight and calculates its determinant</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>Reporting in SAS:</strong></p>
-<ol>
-<li><p>creates a format for age group: up to 13 years included and above, using the MEANS procedure determine the number of students and the average values of age</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a two-dimensional table containing frequencies of age and sex</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a table containing absolute and relative frequencies for age, includes cumulated values for both</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates an HTML report with a table with names on the left hand side and headings of sex; the table should be filled with total values of age</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a report in PDF based on SASHELP.PRDSALE containing information about the current total sales with percentages by years and regions, adds summaries</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a serial report for each region, i.e. creates as many HTML reports, as there are regions and every of these reports contains total sales divided by years and products; adds summaries</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a list macrovariables name1 to name19 inserting names of the students in alphabetical order</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a list macrovariables with names of students inserting each student’s sex after his/her name</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates one long macrovariable with list of names of students in alphabetical order, separated with a #</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a macro program with parameter sex which lists (PROC PRINT) observations for the selected gender</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a bar graph of the average age for sex</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a line graph of the time series containing number of passengers AIR from the set SASHELP.AIR</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates percentiles for age: 5, 25, 50, 75 and 95</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates standard deviation, average and the inter-quartile range</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>exports numbers 3,4,5 to EXCEL cells A1, A2 and A3</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a data set containing file names from the directory c: \</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates text files with names as variable PRODUCT in table SASHELP.PRDSALE and inserts information about the current sales and year</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a box plot for age by sex</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a scatter plot for age and weight</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates robust means for age: e.g. trimmed or winsorized mean</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a listing for LaTeX</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates a table CONVERGENCE containing statistics of fit of age to normal distribution, using procedure UNIVARIATE</p>
-</li>
-</ol>
-<p><strong>Statistics in SAS:</strong></p>
-<ol>
-<li><p>creates a histogram of the age variable containing the gaussian curve</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>creates the chi-square test for gender and age, treating both as a nominal variables, counts p-value</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates the V-Cramer statistic for age and sex</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates the Gini coefficient for sex and age</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates the Spearman correlation coefficient for age and weight</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates the Pearson correlation coefficient for age and weight</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates the Kolmogorov-Smirnov statistic to test the fit of empirical age distribution to the theoretical normal distribution</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates the Shapiro-Wilk statistic to test the fit of empirical age distribution to the theoretical normal distribution</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates the partial Pearson correlation coefficient for age and weight excluding the influence of height</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates linear regression coefficients for age and weight</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates determination coefficient of linear regression for age and weight</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>performs diagnostics of linear regression model for age and weight</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>examines homoscedasticity in linear regression model for age and weight</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>examines normality of residuals in linear regression model for age and weight</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>performs stepwise variable selection in multiple linear regression model of age dependent on weight and height</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates collinearity measures in multiple linear regression model of age dependent on weight and height</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates coefficients of determination for all models of multiple linear regression of age dependent on weight and height</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>determines outliers and/or influential observations in linear regression model of age and height</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates the percent variance explained by principal components for the variables age, weight and height</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>calculates a forecast of age with weight equal to 80 in the linear regression model of age dependent on weight</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-<li><p>determines clusters (concentration) variables (PROC VARCLUS) for all numeric variables in table SASHELP.CARS and the explained variance (ratio) of 80%</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?</div></pre></td></tr></table></figure>
-</li>
-</ol>
-
+        
+          <p class="article-more-link">
+            <a href="/2016/12/18/Learning-SAS-by-examples/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/12/18/Learning-SAS-by-examples/" data-id="ciwvwjk9h00055wvgohr68gws" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/12/18/Learning-SAS-by-examples/" data-id="ciwvwo39j00034gvgg6g0jjxm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SAS/">SAS</a></li></ul>
@@ -365,7 +120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/31/Modify-my-blog-2-Add-a-tag-page/" data-id="ciwvwjk9j00065wvgf9bshy1w" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/10/31/Modify-my-blog-2-Add-a-tag-page/" data-id="ciwvwo39z000b4gvg8utcdfuu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
@@ -409,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/24/Modify-my-blog-1-Code-block-style/" data-id="ciwvwjka0000g5wvg2ealdva2" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/10/24/Modify-my-blog-1-Code-block-style/" data-id="ciwvwo39k00044gvg11ynwvto" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
@@ -456,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/23/Installing-Scrapy-On-Windows/" data-id="ciwvwjk9600015wvgepddur9t" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/10/23/Installing-Scrapy-On-Windows/" data-id="ciwvwo39e00014gvgefafxfkd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -493,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/02/Formula-Test/" data-id="ciwvwjk9f00045wvgce1v5w86" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/10/02/Formula-Test/" data-id="ciwvwo39b00004gvgexjtex4j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
@@ -540,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/01/填平数学公式前的坑/" data-id="ciwvwjka3000i5wvgjv2r41sj" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/10/01/填平数学公式前的坑/" data-id="ciwvwo3a3000d4gvgq14zzs2e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
@@ -574,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/09/30/Hello-World-0/" data-id="ciwvwjk9900025wvgj6cjfyd8" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/09/30/Hello-World-0/" data-id="ciwvwo3a7000g4gvguk76ag6h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
