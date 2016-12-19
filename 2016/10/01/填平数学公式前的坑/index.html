@@ -17,7 +17,7 @@
 
 由于防火墙的问题，用 ssh -T git@github.com 连接 GitHub 会出现 ssh: connect to host github.com port 22: Bad file number 的报错。
 根据 GitHub 官方文档 Error: Bad">
-<meta property="og:updated_time" content="2016-12-19T10:02:54.262Z">
+<meta property="og:updated_time" content="2016-12-19T10:04:28.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="填平数学公式前的坑">
 <meta name="twitter:description" content="今天计划学会在 Hexo + Markdown 里添加数学公式。本以为用用 MathJax 就好，但实践中发现这里面有很多坑：
@@ -87,7 +87,10 @@
 <ol>
 <li><p>由于防火墙的问题，用 <code>ssh -T git@github.com</code> 连接 GitHub 会出现 <code>ssh: connect to host github.com port 22: Bad file number</code> 的报错。</p>
 <p>根据 GitHub 官方文档 <a href="https://help.github.com/articles/error-bad-file-number/" target="_blank" rel="external">Error: Bad file number</a> 和 <a href="https://help.github.com/articles/using-ssh-over-the-https-port/" target="_blank" rel="external">Using SSH over the HTTPS port</a> ，用 <code>ssh -T -p 443 git@ssh.github.com</code> 代替即可。</p>
-<a id="more"></a></li>
+</li>
+</ol>
+<a id="more"></a>
+<ol>
 <li><p>本来想按照 <a href="http://catx.me/2014/03/09/hexo-mathjax-plugin/" target="_blank" rel="external">Hexo MathJax插件教程</a> 里安装 hexo-math 直接搞定数学公式输入问题，但有一个 bug 出现了。只要在 <code>_config.yml</code> 中添加 <code>plugins:</code> 项，就无法成功执行 <code>hexo deploy</code> （此问题已有人提交了 <a href="https://github.com/hexojs/hexo/issues/1848" target="_blank" rel="external">issues</a> ）。</p>
 <p>   突然发现这个问题可能是因为小小的“-”符号，网上的教程都说需要添加</p>
 <pre><code>plugins:
@@ -101,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/10/01/填平数学公式前的坑/" data-id="ciwvwya97000bbgvghtmis1rb" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/10/01/填平数学公式前的坑/" data-id="ciwvx0655000inovght66uy5a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
