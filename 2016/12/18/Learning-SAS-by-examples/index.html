@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://gaofanshu.com/2016/12/18/Learning-SAS-by-examples/index.html">
 <meta property="og:site_name" content="Gao Fangshu">
 <meta property="og:description" content="When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s wort">
-<meta property="og:updated_time" content="2017-01-22T16:43:31.054Z">
+<meta property="og:updated_time" content="2017-01-22T17:01:38.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Learning SAS by examples">
 <meta name="twitter:description" content="When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s wort">
@@ -195,7 +195,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">proc sql;</div><div class="line">    create table result as</div><div class="line">        select z1.*,z2.euc from sashelp.zhc as z1 left join sashelp.ztc as z2</div><div class="line">        on z1.pcms=z2.pcms;</div><div class="line">quit;</div></pre></td></tr></table></figure>
 </li>
 <li><p>tests joining tables SASHELP.ZHC and SASHELP.ZTC by PCMS, how many observations joined, how many are not joined in first and second tables</p>
-<p><em><a href="http://www.lexjansen.com/nesug/nesug08/ff/ff03.pdf" target="_blank" rel="external">Using DATA Step MERGE and PROC SQL JOIN to Combine SAS Datasets</a></em><br>Solution:</p>
+<p><em>Refer to <a href="http://www.lexjansen.com/nesug/nesug08/ff/ff03.pdf" target="_blank" rel="external">Using DATA Step MERGE and PROC SQL JOIN to Combine SAS Datasets</a></em></p>
+<p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">proc sort data=sashelp.zhc out=zhc;</div><div class="line">    by pcms;</div><div class="line">proc sort data=sashelp.ztc out=ztc;</div><div class="line">    by pcms;</div><div class="line">run;</div><div class="line">data joined left right;</div><div class="line">    merge zhc(in=z1) ztc(in=z2);</div><div class="line">    by pcms;</div><div class="line">    if z1 and z2 then output joined;</div><div class="line">    if z1 and not z2 then output left;</div><div class="line">    if not z1 and z2 then output right;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
 <li><p>creates table RESULT containing columns from age11 to age16 and name. For example, if a student is 11 years old the variable age11 contains the student’s gender and the remaining variables are empty</p>
@@ -211,7 +212,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">data result;</div><div class="line">    set sashelp.class;</div><div class="line">    Levenshtein=complev(name,&apos;Alfred&apos;);</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
 <li><p>creates 19 tables from name1 to name19, each with one observation, the first with the first observation of the input table, and the last with the last</p>
-<p><em><a href="http://www2.sas.com/proceedings/sugi29/243-29.pdf" target="_blank" rel="external">SAS · Macro Programming for Beginners</a></em></p>
+<p><em>Refer to <a href="http://www2.sas.com/proceedings/sugi29/243-29.pdf" target="_blank" rel="external">SAS · Macro Programming for Beginners</a></em></p>
 <p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">%macro createtables;</div><div class="line">%do i=1 %to 19;</div><div class="line">    data name&amp;i;</div><div class="line">    set sashelp.class(firstobs=&amp;i obs=&amp;i);</div><div class="line">    run;</div><div class="line">%end;</div><div class="line">%mend;</div><div class="line">%createtables;</div></pre></td></tr></table></figure>
 </li>
@@ -246,13 +247,16 @@
 <p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">%let dir=C:\GaoFangshu\SGH\SAS\;</div><div class="line">ods listing close;</div><div class="line">ods pdf file=&quot;&amp;dir.report.pdf&quot;;</div><div class="line">title &apos;Sale report&apos;;</div><div class="line">options missing=&apos; &apos;;</div><div class="line">proc tabulate data=sashelp.prdsale;</div><div class="line">    class year region;</div><div class="line">    var actual;</div><div class="line">    table region=&apos;&apos; all, (year=&apos;&apos; all)*(sum=&apos;Sum&apos; rowpctsum=&apos;Pct&apos;)*actual=&apos;&apos;*f=12.1</div><div class="line">    / box=&apos;Region / Year&apos;;</div><div class="line">run;</div><div class="line">ods pdf close;</div><div class="line">ods listing;</div></pre></td></tr></table></figure>
 </li>
-<li><p>creates a serial report for each region, i.e. creates as many HTML reports, as there are regions and every of these reports contains total sales divided by years and products; adds summaries<br>Solution:</p>
+<li><p>creates a serial report for each region, i.e. creates as many HTML reports, as there are regions and every of these reports contains total sales divided by years and products; adds summaries</p>
+<p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">proc sql noprint;</div><div class="line">    select distinct region into :reg1-:reg99999 from sashelp.prdsale;</div><div class="line">quit;</div><div class="line">%let n_reg=&amp;sqlobs;</div><div class="line">%put &amp;n_reg***&amp;reg1***&amp;&amp;reg&amp;n_reg;</div><div class="line">%macro doreports;</div><div class="line">    %let dir=C:\GaoFangshu\SGH\SAS\;</div><div class="line">    %do i=1 %to &amp;n_reg;</div><div class="line">        %let region=&amp;&amp;reg&amp;i;</div><div class="line">        ods listing close;</div><div class="line">        ods html path=&quot;&amp;dir&quot; body=&quot;report_&amp;region..html&quot; style=statistical;</div><div class="line">        title &quot;Sales report in &amp;region&quot;;</div><div class="line">        options missing=&apos; &apos;;</div><div class="line">        proc tabulate data=sashelp.prdsale;</div><div class="line">            class year product;</div><div class="line">            var actual;</div><div class="line">            table product=&apos;&apos; all, (year=&apos;&apos; all)*sum=&apos;&apos;*actual=&apos;&apos;*f=12.1</div><div class="line">            / box=&apos;Product / Year&apos;;</div><div class="line">            where region=&quot;&amp;region&quot;;</div><div class="line">        run;</div><div class="line">        ods html close;</div><div class="line">        ods listing;</div><div class="line">    %end;</div><div class="line">%mend;</div><div class="line">%doreports;</div></pre></td></tr></table></figure>
 </li>
-<li><p>creates a list macrovariables name1 to name19 inserting names of the students in alphabetical order<br>Soulution:</p>
+<li><p>creates a list macrovariables name1 to name19 inserting names of the students in alphabetical order</p>
+<p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">proc sql noprint;</div><div class="line">    select name into :name1-:name19 from sashelp.class</div><div class="line">    order by name;</div><div class="line">quit;</div><div class="line">%put &amp;name1***&amp;name2***&amp;name19;</div></pre></td></tr></table></figure>
 </li>
-<li><p>creates a list macrovariables with names of students inserting each student’s sex after his/her name<br>Solution:</p>
+<li><p>creates a list macrovariables with names of students inserting each student’s sex after his/her name</p>
+<p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data _null_;</div><div class="line">    set sashelp.class;</div><div class="line">    call symput(name,trim(sex));</div><div class="line">run;</div><div class="line">%put &amp;Alfred***&amp;Alice***&amp;William;</div></pre></td></tr></table></figure>
 <p>Three kinds of macrovariable: <code>%let</code>, <code>select ... into :...</code>, <code>call symput()</code></p>
 </li>
@@ -265,10 +269,12 @@
 <li><p>creates a bar graph of the average age for sex<br>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc gchart data=sashelp.class;</div><div class="line">    vbar3d sex / sumvar=age type=mean;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
 </li>
-<li><p>creates a line graph of the time series containing number of passengers AIR from the set SASHELP.AIR<br>Solution:</p>
+<li><p>creates a line graph of the time series containing number of passengers AIR from the set SASHELP.AIR</p>
+<p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">symbol i=join v=star;</div><div class="line">proc gplot data=sashelp.air;</div><div class="line">    plot air*date;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
 </li>
-<li><p>calculates percentiles for age: 5, 25, 50, 75 and 95<br><em><a href="http://www.ats.ucla.edu/stat/sas/faq/percentiles.htm" target="_blank" rel="external">How do I obtain percentiles not automatically calculated?</a></em></p>
+<li><p>calculates percentiles for age: 5, 25, 50, 75 and 95</p>
+<p><em>Refer to <a href="http://www.ats.ucla.edu/stat/sas/faq/percentiles.htm" target="_blank" rel="external">How do I obtain percentiles not automatically calculated?</a></em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc univariate data=sashelp.class;</div><div class="line">    var age;</div><div class="line">    output pctlpre=P_ pctlpts= 5, 25 to 75 by 25, 95 out=result;</div><div class="line">run;</div><div class="line">proc print data=result;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
 <li><p>calculates standard deviation, average and the inter-quartile range</p>
@@ -283,16 +289,19 @@
 <li><p>creates text files with names as variable PRODUCT in table SASHELP.PRDSALE and inserts information about the current sales and year</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">%let dir=C:\GaoFangshu\SGH\SAS\;</div><div class="line">proc sql noprint;</div><div class="line">    select distinct product into :pr1-:pr99999 from sashelp.PRDSALE;</div><div class="line">quit;</div><div class="line">%let n_pr=&amp;sqlobs;</div><div class="line">%put &amp;n_pr***&amp;pr1***&amp;&amp;pr&amp;n_pr;</div><div class="line">%macro all_reports;</div><div class="line">    %do i=1 %to &amp;n_pr;</div><div class="line">        %let product=&amp;&amp;pr&amp;i;</div><div class="line">        /*%let product=SOFA;*/</div><div class="line">        proc means data=SASHELP.PRDSALE noprint nway;</div><div class="line">            class year;</div><div class="line">            var actual;</div><div class="line">            output out=stat sum()=;</div><div class="line">            where product=&quot;&amp;product&quot;;</div><div class="line">        run;</div><div class="line">        data _null_;</div><div class="line">            file &quot;&amp;dir.&amp;product..txt&quot; dsd dlm=&apos;#&apos;;</div><div class="line">            set stat;</div><div class="line">            put year actual;</div><div class="line">        run;</div><div class="line">    %end;</div><div class="line">%mend;</div><div class="line">%all_reports;</div></pre></td></tr></table></figure>
 </li>
-<li><p>creates a box plot for age by sex<br><em><a href="https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#boxplot_toc.htm" target="_blank" rel="external">The BOXPLOT Procedure</a></em></p>
+<li><p>creates a box plot for age by sex</p>
+<p><em>Refer to <a href="https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#boxplot_toc.htm" target="_blank" rel="external">The BOXPLOT Procedure</a></em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc sort data=sashelp.class out=sorted;</div><div class="line">    by sex;</div><div class="line">run;</div><div class="line">proc boxplot data=sorted;</div><div class="line">    plot age*sex;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
-<li><p>creates a scatter plot for age and weight<br><em><a href="http://www.ats.ucla.edu/stat/sas/modules/graph.htm" target="_blank" rel="external">SAS Learning Module: Graphing data in SAS</a><br><a href="http://support.sas.com/documentation/cdl/en/procstat/66703/HTML/default/viewer.htm#procstat_corr_examples11.htm" target="_blank" rel="external">The CORR Procedure: Example 2.8 Creating Scatter Plots</a></em></p>
+<li><p>creates a scatter plot for age and weight</p>
+<p><em>Refer to <a href="http://www.ats.ucla.edu/stat/sas/modules/graph.htm" target="_blank" rel="external">SAS Learning Module: Graphing data in SAS</a>,<br><a href="http://support.sas.com/documentation/cdl/en/procstat/66703/HTML/default/viewer.htm#procstat_corr_examples11.htm" target="_blank" rel="external">The CORR Procedure: Example 2.8 Creating Scatter Plots</a></em></p>
 <blockquote>
 <p>You must enable ODS graphics before requesting plots.</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ods graphics on;</div><div class="line">proc corr data=sashelp.class plots=scatter(nvar=2);</div><div class="line">	var age weight;</div><div class="line">run;</div><div class="line">ods graphics off;</div></pre></td></tr></table></figure>
 </li>
-<li><p>calculates robust means for age: e.g. trimmed or winsorized mean<br><em><a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_univariate_details22.htm" target="_blank" rel="external">The UNIVARIATE Procedure: Robust Estimators</a></em></p>
+<li><p>calculates robust means for age: e.g. trimmed or winsorized mean</p>
+<p><em>Refer to <a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_univariate_details22.htm" target="_blank" rel="external">The UNIVARIATE Procedure: Robust Estimators</a></em></p>
 <blockquote>
 <p>The ODS SELECT statement restricts the output to the “TrimmedMeans,” “WinsorizedMeans,” and “RobustScale” tables; see the section <a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_univariate_details85.htm" target="_blank" rel="external">ODS Table Names</a>. The TRIMMED= option computes two trimmed means, the first after removing one observation and the second after removing 10% of the observations. If the value of TRIMMED= is greater than or equal to one, it is interpreted as the number of observations to be trimmed. The WINSORIZED= option computes a Winsorized mean that replaces three observations from the tails with the next closest observations.</p>
 </blockquote>
@@ -310,7 +319,8 @@
 <li><p>creates a histogram of the age variable containing the gaussian curve</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc univatiate data=sashelp.class;</div><div class="line">    var age;</div><div class="line">    histogram age / normal;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
-<li><p>creates the chi-square test for gender and age, treating both as a nominal variables, counts p-value<br><em><a href="http://www.ats.ucla.edu/stat/sas/whatstat/whatstat.htm" target="_blank" rel="external">Statistical Test in SAS</a></em></p>
+<li><p>creates the chi-square test for gender and age, treating both as a nominal variables, counts p-value</p>
+<p><em>Refer to <a href="http://www.ats.ucla.edu/stat/sas/whatstat/whatstat.htm" target="_blank" rel="external">Statistical Test in SAS</a></em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc freq data=sashelp.class;</div><div class="line">    table sex*age / chisq;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
 <li><p>calculates the V-Cramer statistic for age and sex</p>
@@ -328,13 +338,16 @@
 <li><p>calculates the Pearson correlation coefficient for age and weight</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc corr data=sashelp.class pearson spearman;</div><div class="line">    var age weight;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
-<li><p>calculates the Kolmogorov-Smirnov statistic to test the fit of empirical age distribution to the theoretical normal distribution<br><em><a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_univariate_details52.htm" target="_blank" rel="external">The UNIVARIATE Procedure: Goodness-of-Fit Tests</a></em></p>
+<li><p>calculates the Kolmogorov-Smirnov statistic to test the fit of empirical age distribution to the theoretical normal distribution</p>
+<p><em>Refer to <a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_univariate_details52.htm" target="_blank" rel="external">The UNIVARIATE Procedure: Goodness-of-Fit Tests</a></em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc univariate data=sashelp.class normal;</div><div class="line">    var age;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
-<li><p>calculates the Shapiro-Wilk statistic to test the fit of empirical age distribution to the theoretical normal distribution<br><em><a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_univariate_details52.htm" target="_blank" rel="external">The UNIVARIATE Procedure: Goodness-of-Fit Tests</a></em></p>
+<li><p>calculates the Shapiro-Wilk statistic to test the fit of empirical age distribution to the theoretical normal distribution</p>
+<p><em>Refer to <a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_univariate_details52.htm" target="_blank" rel="external">The UNIVARIATE Procedure: Goodness-of-Fit Tests</a></em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc univariate data=sashelp.class normal;</div><div class="line">    var age;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
-<li><p>calculates the partial Pearson correlation coefficient for age and weight excluding the influence of height<br><em><a href="https://onlinecourses.science.psu.edu/stat482/book/export/html/7" target="_blank" rel="external">Correlation and Simple Regression</a><br><a href="http://www.ats.ucla.edu/stat/sas/code/partreg.htm" target="_blank" rel="external">Computing Partial Correlation Via Regression</a><br><a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_corr_examples12.htm" target="_blank" rel="external">The CORR Procedure: Example 2.9 Computing Partial Correlations</a></em></p>
+<li><p>calculates the partial Pearson correlation coefficient for age and weight excluding the influence of height</p>
+<p><em>Refer to <a href="https://onlinecourses.science.psu.edu/stat482/book/export/html/7" target="_blank" rel="external">Correlation and Simple Regression</a>,<br><a href="http://www.ats.ucla.edu/stat/sas/code/partreg.htm" target="_blank" rel="external">Computing Partial Correlation Via Regression</a>,<br><a href="http://support.sas.com/documentation/cdl/en/procstat/67528/HTML/default/viewer.htm#procstat_corr_examples12.htm" target="_blank" rel="external">The CORR Procedure: Example 2.9 Computing Partial Correlations</a></em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc corr data=sashelp.class;</div><div class="line">    var age weight;</div><div class="line">	partial height;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
 <li><p>calculates linear regression coefficients for age and weight</p>
@@ -343,7 +356,8 @@
 <li><p>calculates determination coefficient of linear regression for age and weight</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc reg data=sashelp.class;</div><div class="line">    model age=weight;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
 </li>
-<li><p>performs diagnostics of linear regression model for age and weight<br><em><a href="http://www.ats.ucla.edu/stat/sas/webbooks/reg/chapter2/sasreg2.htm" target="_blank" rel="external">Regression Diagnostics</a></em></p>
+<li><p>performs diagnostics of linear regression model for age and weight</p>
+<p><em>Refer to <a href="http://www.ats.ucla.edu/stat/sas/webbooks/reg/chapter2/sasreg2.htm" target="_blank" rel="external">Regression Diagnostics</a></em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc reg data=sashelp.class;</div><div class="line">model age=weight;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
 </li>
 <li><p>examines homoscedasticity in linear regression model for age and weight</p>
@@ -378,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/12/18/Learning-SAS-by-examples/" data-id="ciy8w8hyf00047svg7cn0f49g" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/12/18/Learning-SAS-by-examples/" data-id="ciy8wvzcg0007o0vg227kvr29" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SAS/">SAS</a></li></ul>
