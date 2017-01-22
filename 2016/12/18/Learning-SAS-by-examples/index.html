@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://gaofanshu.com/2016/12/18/Learning-SAS-by-examples/index.html">
 <meta property="og:site_name" content="Gao Fangshu">
 <meta property="og:description" content="When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s wort">
-<meta property="og:updated_time" content="2017-01-22T17:01:38.354Z">
+<meta property="og:updated_time" content="2017-01-22T17:04:45.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Learning SAS by examples">
 <meta name="twitter:description" content="When learning SAS programming, only reading basic SAS introductions can be a comfortable way but not efficient one. Struggling with these questions given by my professor takes much time, but it’s wort">
@@ -260,13 +260,16 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data _null_;</div><div class="line">    set sashelp.class;</div><div class="line">    call symput(name,trim(sex));</div><div class="line">run;</div><div class="line">%put &amp;Alfred***&amp;Alice***&amp;William;</div></pre></td></tr></table></figure>
 <p>Three kinds of macrovariable: <code>%let</code>, <code>select ... into :...</code>, <code>call symput()</code></p>
 </li>
-<li><p>creates one long macrovariable with list of names of students in alphabetical order, separated with a #<br>Solution:</p>
+<li><p>creates one long macrovariable with list of names of students in alphabetical order, separated with a #</p>
+<p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">proc sql noprint;</div><div class="line">    select distinct name into :names separated by &apos;#&apos; from sashelp.class</div><div class="line">    order by name;</div><div class="line">quit;</div><div class="line">%put &amp;names;</div></pre></td></tr></table></figure>
 </li>
-<li><p>creates a macro program with parameter sex which lists (PROC PRINT) observations for the selected gender<br>Solution:</p>
+<li><p>creates a macro program with parameter sex which lists (PROC PRINT) observations for the selected gender</p>
+<p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">%macro report(gender);</div><div class="line">    title &quot;Report for &amp;gender&quot;;</div><div class="line">    proc print data=sashelp.class;</div><div class="line">        where sex=&apos;&amp;gender&apos;;</div><div class="line">    run;</div><div class="line">%mend;</div><div class="line">%report(F);</div><div class="line">%report(M);</div></pre></td></tr></table></figure>
 </li>
-<li><p>creates a bar graph of the average age for sex<br>Solution:</p>
+<li><p>creates a bar graph of the average age for sex</p>
+<p>Solution:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc gchart data=sashelp.class;</div><div class="line">    vbar3d sex / sumvar=age type=mean;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
 </li>
 <li><p>creates a line graph of the time series containing number of passengers AIR from the set SASHELP.AIR</p>
@@ -392,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://gaofanshu.com/2016/12/18/Learning-SAS-by-examples/" data-id="ciy8wvzcg0007o0vg227kvr29" class="article-share-link">Share</a>
+      <a data-url="http://gaofanshu.com/2016/12/18/Learning-SAS-by-examples/" data-id="ciy8x0xiu000730vgo4zs61hk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SAS/">SAS</a></li></ul>
