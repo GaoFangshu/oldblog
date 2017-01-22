@@ -523,7 +523,7 @@ a.article-title:hover {
   overflow: auto;
   font-family: "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
   border-collapse: collapse;
-  border: solid 9px #eee;
+  border-left: solid 9px;
   background-color: #f8f8f8;
   border-color: #e0e0e0;
   padding-left: 9px;
