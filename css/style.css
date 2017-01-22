@@ -522,6 +522,7 @@ a.article-title:hover {
 .article-entry blockquote {
   overflow: auto;
   font-family: "Ubuntu", "Microsoft YaHei", Arial, sans-serif;
+  border-collapse: collapse;
   border-left: solid 5px;
   background-color: #f8f8f8;
   border-color: #e0e0e0;
