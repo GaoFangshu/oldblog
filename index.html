@@ -4,7 +4,6 @@
 }>
 <head>
     <script src="https://use.fontawesome.com/29c9a2311e.js"></script>
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
 
     <style type="text/css">
         @font-face {
@@ -34,30 +33,38 @@
             left:50%;
             top:50%;
             margin:-100px 0 0 -150px;
-        }
-        /*       
+        }       
         #picture {
+            float: left;
             text-align: center;
+            padding-top: 3px;
+            width: 146px;
+            height: 146px;
             border: solid;
-            border-radius: 3px;
+            border-radius: 4px;
             border-color: #555;
             border-width: 1px;
-      	}*/
+            margin-right: 40px;
+      	}
   	    #name {
-            text-align: center;
             font-family: "Ubuntu", Arial;
             color: #555;
-            font-size: 24px;
+            font-size: 50px;
+            float: left;
+            padding-top: 15px;
+            padding-bottom: 10px;
         }
-        #icon_block {
-            width: 322.5px;
-            height: 100px;
+        #block {
             margin: 0 auto;
             border: none;
         }
+        #icon_block {
+            border: none;
+            float: left;
+        }
         #sub_icon_block {
-        	width: 60px;
-        	height: 60px;
+        	width: 45px;
+        	height: 45px;
         }
 
         .icon {
@@ -89,13 +96,11 @@
             float: left;
             position: relative;
             display: block;
-            padding: 10px;
             background: #F9F9F9;
             border: none;
             border-width: 1px;
             border-radius: 5px;
-            margin-right: -1px;
-            text-align: center;
+            text-align: left;
         }
     </style>
 
@@ -104,27 +109,26 @@
 <body style="background-color: #F9F9F9">
   <div id="wrapper">
 
-    <!--     
-    <div id="picture">
-        <img src="https://github.com/GaoFangshu/blog/blob/master/css/images/welcome.jpg?raw=true" width="142" height="142">
-    </div> 
-    -->
-
-    <div id="icon_block">
+    <div id="block">
+        <div id="picture">
+            <img src="https://github.com/GaoFangshu/blog/blob/master/css/images/welcome.jpg?raw=true" width="142" height="142">
+        </div> 
         <div id="name">
-            <h1>Gao Fangshu</h1>
+            Gao Fangshu
         </div>
-        <div id="sub_icon_block" class="button">
-            <a href="http://www.gaofangshu.com/blog" style="text-decoration: none"><i class="icon icon_blog fix_width"></i></a>
-        </div>
-        <div id="sub_icon_block" class="button">
-            <a href="http://gaofangshu.com/blog/tags/" style="text-decoration: none"><i class="icon icon_tags fix_width"></i></a>
-        </div>
-        <div id="sub_icon_block" class="button">
-            <a href="http://gaofangshu.com/blog/archives/" style="text-decoration: none"><i class="icon icon_archives fix_width"></i></a>
-        </div>
-        <div id="sub_icon_block" class="button">
-            <a href="http://gaofangshu.com/blog/about/" style="text-decoration: none"><i class="icon icon_about fix_width"></i></a>
+        <div id="icon_block">
+            <div id="sub_icon_block" class="button" style="margin-right: 15px">
+                <a href="http://www.gaofangshu.com/blog" style="text-decoration: none"><i class="icon icon_blog fix_width"></i></a>
+            </div>
+            <div id="sub_icon_block" class="button" style="margin-right: 20px">
+                <a href="http://gaofangshu.com/blog/tags/" style="text-decoration: none"><i class="icon icon_tags fix_width"></i></a>
+            </div>
+            <div id="sub_icon_block" class="button" style="margin-right: 20px">
+                <a href="http://gaofangshu.com/blog/archives/" style="text-decoration: none"><i class="icon icon_archives fix_width"></i></a>
+            </div>
+            <div id="sub_icon_block" class="button">
+                <a href="http://gaofangshu.com/blog/about/" style="text-decoration: none"><i class="icon icon_about fix_width"></i></a>
+            </div>
         </div>
     </div>
 
