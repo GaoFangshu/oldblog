@@ -1,120 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html {
+  text-align: center;
+}>
 <head>
     <script src="https://use.fontawesome.com/29c9a2311e.js"></script>
-    <style type="text/css">
-        #picture {
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
 
+    <style type="text/css">
+        @font-face {
+            font-family: "FontAwesome";
+            src: url("css/fonts/fontawesome-webfont.eot");
+            src: url("css/fonts/fontawesome-webfont.eot?#iefix") format('embedded-opentype')
+                 url("css/fonts/fontawesome-webfont.woff") format("woff"),
+                 url("css/fonts/fontawesome-webfont.ttf") format("truetype"),
+                 url("css/fonts/fontawesome-webfont.svg") format("svg");
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: "Ubuntu";
+            src: url("FontUbuntu/Ubuntu.eot?#iefix") format('embedded-opentype'),  
+                 url("FontUbuntu/Ubuntu.woff") format('woff'), 
+                 url("FontUbuntu/Ubuntu.ttf")  format('truetype'), 
+                 url("FontUbuntu/Ubuntu.svg#Ubuntu") format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        #wrapper {
+            width:300px;
+            height:200px;
+            position:absolute;
+            left:50%;
+            top:50%;
+            margin:-100px 0 0 -150px;
+        }
+        /*       
+        #picture {
             text-align: center;
             border: solid;
             border-radius: 3px;
             border-color: #555;
             border-width: 1px;
-      	}
+      	}*/
   	    #name {
-  	    	top: 100px;
             text-align: center;
-            font-family: arial;
+            font-family: "Ubuntu", Arial;
             color: #555;
-            font-size: 40px;
+            font-size: 24px;
         }
-        #iconBlock {
-            width: 270px;
-            height: 270px;
+        #icon_block {
+            width: 322.5px;
+            height: 100px;
             margin: 0 auto;
+            border: none;
         }
-        #subIconBlock {
+        #sub_icon_block {
         	width: 60px;
         	height: 60px;
-        	float: left;
-        	font-family: arial;
         }
-        @font-face {
-	        font-family: "FontAwesome";
-	        src: url("css/fonts/fontawesome-webfont.eot");
-	        src: url("css/fonts/FontAwesome.otf") format('embedded-opentype')
-	             url("css/fonts/fontawesome-webfont.woff") format("woff"),
-		         url("css/fonts/fontawesome-webfont.ttf") format("truetype"),
-		         url("css/fonts/fontawesome-webfont.svg") format("svg");
-	        font-weight: normal;
-	        font-style: normal;
-        }
+
         .icon {
             font-family: "FontAwesome";
             font-weight: normal;
             font-style: normal;
-            font-size: 24px;
+            font-size: 40px;
+            text-shadow: 0 1px rgba(0,0,0,0.2);
+            color: #a9a9a9;
+            text-decoration: none;
         }
         .icon_blog:before {
-            content: "\f105 Blog";
+            content: "\f015";
             font: "FontAwesome";
         }
-
+        .icon_tags:before {
+            content: "\f02c";
+            font: "FontAwesome";
+        }
+        .icon_archives:before {
+            content: "\f03a";
+            font: "FontAwesome";
+        }
+        .icon_about:before {
+            content: "\f007";
+            font: "FontAwesome";
+        }
+        .button {
+            float: left;
+            position: relative;
+            display: block;
+            padding: 10px;
+            background: #F9F9F9;
+            border: none;
+            border-width: 1px;
+            border-radius: 5px;
+            margin-right: -1px;
+            text-align: center;
+        }
     </style>
+
 </head>
 
 <body style="background-color: #F9F9F9">
+  <div id="wrapper">
 
-    <div id="name">
-        <h1>Gao Fangshu</h1>
-    </div>
-
+    <!--     
     <div id="picture">
-        <img src="https://github.com/GaoFangshu/gaofangshu.github.io/blob/master/css/images/welcome.jpg?raw=true" width="142" height="142">
+        <img src="https://github.com/GaoFangshu/blog/blob/master/css/images/welcome.jpg?raw=true" width="142" height="142">
+    </div> 
+    -->
+
+    <div id="icon_block">
+        <div id="name">
+            <h1>Gao Fangshu</h1>
+        </div>
+        <div id="sub_icon_block" class="button">
+            <a href="http://www.gaofangshu.com/blog" style="text-decoration: none"><i class="icon icon_blog fix_width"></i></a>
+        </div>
+        <div id="sub_icon_block" class="button">
+            <a href="http://gaofangshu.com/blog/tags/" style="text-decoration: none"><i class="icon icon_tags fix_width"></i></a>
+        </div>
+        <div id="sub_icon_block" class="button">
+            <a href="http://gaofangshu.com/blog/archives/" style="text-decoration: none"><i class="icon icon_archives fix_width"></i></a>
+        </div>
+        <div id="sub_icon_block" class="button">
+            <a href="http://gaofangshu.com/blog/about/" style="text-decoration: none"><i class="icon icon_about fix_width"></i></a>
+        </div>
     </div>
 
-    <div id="iconBlock">
-        <div id="subIconBlock">
-            <a href="http://www.gaofangshu.com"><i class="icon icon_blog"></i>Blog</a>
-        </div>
-        <div id="subIconBlock" style="margin-left: 10px">
-            <a href="http://www.gaofangshu.com">\f03a</a>
-        </div>
-        <div id="subIconBlock" style="margin-left: 10px">
-            <a href="http://www.gaofangshu.com">\f007</a>
-        </div>
-        <div id="subIconBlock" style="margin-left: 10px">
-            <a href="http://www.gaofangshu.com">\f02c</a>
-        </div>
-    </div>
-
-
-
-
-<!-- <table style="align-self: center; align-content: center;">
-<tr>
-<td><a href="http://www.gaofangshu.com" style="color: #258fb8">Blog \f015</a></td>
-<td><a href="http://www.gaofangshu.com">Tags</a></td>
-<td><a href="http://www.gaofangshu.com">Archives</a></td>
-<td><a href="http://www.gaofangshu.com">About</a></td>
-</tr>
-<tr>
-<td><a href="http://www.gaofangshu.com" style="color: #258fb8">Blog</a></td>
-<td><a href="http://www.gaofangshu.com">Tags</a></td>
-<td><a href="http://www.gaofangshu.com">Archives</a></td>
-<td><a href="http://www.gaofangshu.com">About</a></td>
-</tr>
-</table> -->
-
-
-
-<!-- #nav-home-icon
-  &:before
-    content: "\f015"
-
-#nav-archives-icon
-  &:before
-    content: "\f03a"
-
-#nav-about-icon
-  &:before
-    content: "\f007"
-
-#nav-tags-icon
-  &:before
-    content: "\f02c" -->
-
-
+  </div>
 </body>
-
 </html>
